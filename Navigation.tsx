@@ -8,6 +8,9 @@ import HomeScreen from './screens/HomeScreen';
 import DetailsScreen from './screens/DetailsScreen';
 import CartScreen from './screens/CartScreen';
 import NotificationsScreen from './screens/NotificationsScreen';
+import { RootStackParamList } from './types/Navigation.type';
+
+
 
 const HomeTabs = createBottomTabNavigator({
   screens: {
@@ -41,7 +44,7 @@ const HomeTabs = createBottomTabNavigator({
   },
 });
 
-const RootStack = createNativeStackNavigator({
+const RootStack = createNativeStackNavigator<RootStackParamList>({
   initialRouteName: 'HomeScreen',
   screens: {
     HomeScreen: {
@@ -50,7 +53,7 @@ const RootStack = createNativeStackNavigator({
         headerShown: false,
       },
     },
-    Details: DetailsScreen,
+    DetailsScreen: DetailsScreen,
   },
 });
 
