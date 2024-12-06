@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {useQuery} from '@tanstack/react-query';
 import {fetchProducts} from '../api/Products';
-import ProductList from '../components/ProductList';
+import ProductList from '../components/ProductList.component';
 
 export default function HomeScreen() {
   const {data, isLoading} = useQuery({
@@ -20,7 +20,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView className="flex flex-1">
-      <View className="flex bg-blue-300 flex-1">
+      <View className="flex bg-white flex-1">
         {isLoading && (
           <View className="flex-1 justify-center items-center">
             <ActivityIndicator size="large" color="#0000ff" />
