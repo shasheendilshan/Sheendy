@@ -1,30 +1,34 @@
 import React from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import {View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import CustomButton from './CustomButton.component';
 
-type Props = {
+type DetailsPageBottomBarProps = {
   onAddToCart: () => void;
   onBuyNow: () => void;
 };
 
-const DetailsPageBottomBar = ({onAddToCart, onBuyNow}: Props) => {
+const DetailsPageBottomBar = ({
+  onAddToCart,
+  onBuyNow,
+}: DetailsPageBottomBarProps) => {
   return (
-    <View className="w-full bg-white border-t border-gray-300 p-4 flex-row justify-between items-center">
-      {/* Add to Cart Button */}
-      <TouchableOpacity
+    <View className="w-full bg-white border-t border-gray-300 p-4 gap-4 flex-row justify-between items-center">
+      <CustomButton
         onPress={onAddToCart}
-        className="flex-1 bg-blue-500 py-3 rounded-lg flex-row items-center justify-center mr-2">
-        <Ionicons name="cart-outline" size={20} color="#fff" />
-        <Text className="ml-2 text-white">Add to Cart</Text>
-      </TouchableOpacity>
+        icon={<Ionicons name="cart-outline" size={20} color="#fff" />}
+        label="Add to Cart"
+        buttonStyle="bg-blue-500 py-3  flex-1"
+        buttonTextStyle="text-white font-bold"
+      />
 
-      {/* Buy Now Button */}
-      <TouchableOpacity
+      <CustomButton
         onPress={onBuyNow}
-        className="flex-1 bg-green-500 py-3 rounded-lg flex-row items-center justify-center">
-        <Ionicons name="cash-outline" size={20} color="#fff" />
-        <Text className="ml-2 text-white">Buy Now</Text>
-      </TouchableOpacity>
+        icon={<Ionicons name="cash-outline" size={20} color="#fff" />}
+        label="Buy Now"
+        buttonStyle="bg-green-500 py-3  flex-1"
+        buttonTextStyle="text-white font-bold"
+      />
     </View>
   );
 };

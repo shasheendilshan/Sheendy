@@ -5,27 +5,25 @@ type ButtonProps = {
   onPress: () => void;
   label: string;
   icon?: React.ReactNode;
-  backgroundColor?: string;
   textColor?: string;
-  className?: string;
+  buttonStyle?: string;
+  buttonTextStyle?: string;
 };
 
 const CustomButton: React.FC<ButtonProps> = ({
   onPress,
   label,
   icon,
-  backgroundColor = 'blue',
-  textColor = 'white',
-  className = '',
+  buttonStyle = '',
+  buttonTextStyle = '',
 }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={{backgroundColor}}
-      className={`py-2 px-4 rounded-lg flex-row items-center justify-center ${className}`}>
+      className={`py-2 px-4 rounded-lg flex-row items-center justify-center bg-blue-500 ${buttonStyle}`}>
       {icon && <>{icon}</>}
 
-      <Text style={{color: textColor}} className={`ml-${icon ? 2 : 0}`}>
+      <Text className={`ml-${icon ? 2 : 0} text-white ${buttonTextStyle}`}>
         {label}
       </Text>
     </TouchableOpacity>

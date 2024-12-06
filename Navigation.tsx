@@ -8,9 +8,10 @@ import HomeScreen from './screens/HomeScreen';
 import DetailsScreen from './screens/DetailsScreen';
 import CartScreen from './screens/CartScreen';
 import NotificationsScreen from './screens/NotificationsScreen';
-import { RootStackParamList } from './types/Navigation.type';
-
-
+import {RootStackParamList} from './types/Navigation.type';
+import {useSelector} from 'react-redux';
+import {RootState} from './Store/store';
+import {Text, TouchableOpacity, View} from 'react-native';
 
 const HomeTabs = createBottomTabNavigator({
   screens: {
@@ -27,8 +28,22 @@ const HomeTabs = createBottomTabNavigator({
       screen: CartScreen,
       options: {
         headerShown: false,
-        tabBarIcon: ({size, focused, color}) => {
-          return <Ionicons name="cart" size={size} color={color} />;
+        tabBarIcon: ({size, color}) => {
+          const cartItems = useSelector((state: RootState) => state.cart.items);
+          const itemCount = cartItems.length;
+
+          return (
+            <View className="relative">
+              <Ionicons name="cart" size={size} color={color} />
+              {itemCount > 0 && (
+                <View className="absolute top-[-6px] right-[-12px] bg-red-500 rounded-full px-2 py-1">
+                  <Text className="text-white text-xs font-bold">
+                    {itemCount}
+                  </Text>
+                </View>
+              )}
+            </View>
+          );
         },
       },
     },
@@ -53,7 +68,20 @@ const RootStack = createNativeStackNavigator<RootStackParamList>({
         headerShown: false,
       },
     },
-    DetailsScreen: DetailsScreen,
+    DetailsScreen: {
+      screen: DetailsScreen,
+      options: ({navigation}) => ({
+        headerShown: true,
+        headerTitle: '',
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            className="bg-gray-200 p-2 rounded-full ml-2 ">
+            <Ionicons name="arrow-back" size={24} color="#333" />
+          </TouchableOpacity>
+        ),
+      }),
+    },
   },
 });
 
