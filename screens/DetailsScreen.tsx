@@ -1,18 +1,9 @@
-import {RouteProp, useNavigation} from '@react-navigation/native';
+import {RouteProp} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {
-  Text,
-  ScrollView,
-  Image,
-  SafeAreaView,
-  View,
-  TouchableOpacity,
-  Platform,
-} from 'react-native';
+import {Text, ScrollView, Image, SafeAreaView, View} from 'react-native';
 import {RootStackParamList} from '../types/Navigation.type';
 import DetailsPageBottomBar from '../components/DetailsBottomBar.component';
 import StylishModal from '../components/StyledModal.component';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import DetailsScreenHeader from '../components/DetailsScreenHeader.component';
 
 type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'DetailsScreen'>;
@@ -29,8 +20,6 @@ export enum ProductStatus {
 
 export default function DetailsScreen({route}: DetailsScreenProps) {
   const {product} = route.params;
-
-  const navigation = useNavigation<any>();
 
   const [modalVisible, setModalVisible] = useState(false);
   const [buttonType, setButtonType] =
@@ -54,16 +43,7 @@ export default function DetailsScreen({route}: DetailsScreenProps) {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      {/* Back button */}
-      {/* <TouchableOpacity
-        onPress={() => navigation.goBack()}
-        className={`bg-gray-200  flex  items-center justify-center rounded-full top-0 left-2 w-12 h-12 ${
-          Platform.OS === 'android' && 'mt-4'
-        }`}>
-        <Ionicons name="arrow-back" size={24} color="#333" />
-      </TouchableOpacity> */}
-
-      <DetailsScreenHeader/>
+      <DetailsScreenHeader />
 
       {/* Product Details */}
       <ScrollView className="flex mt-1">
