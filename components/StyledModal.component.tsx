@@ -40,33 +40,35 @@ const StylishModal: React.FC<StylishModalProps> = ({
   };
 
   const handleBtnClick = () => {
-    // Check if product has sizes or not
-    if (product?.sizes?.length === 0) {
-      // If no sizes, directly add the product to cart
-      const cartItem = {
-        ...product,
-        size: 'default',
-        quantity,
-      };
+    const hasSizes = product?.sizes?.length > 0;
+    const cartItem = {
+      ...product,
+      size: selectedSize || 'default',
+      quantity,
+    };
+
+    // If no sizes, directly add to cart
+    if (!hasSizes) {
+      dispatch(addToCart(cartItem));
+      closeModal();
+      return;
+    }
+
+    // Handle cases with sizes
+    if (!selectedSize) {
+      Alert.alert(
+        buttonType === 'add_to_cart'
+          ? 'Please select a size'
+          : 'Please select a size to proceed',
+      );
+      return;
+    }
+
+    if (buttonType === 'add_to_cart') {
       dispatch(addToCart(cartItem));
       closeModal();
     } else {
-      // If sizes, proceed with the size validation
-      if (buttonType === 'add_to_cart') {
-        if (selectedSize) {
-          const cartItem = {
-            ...product,
-            size: selectedSize,
-            quantity,
-          };
-          dispatch(addToCart(cartItem));
-          closeModal();
-        } else {
-          Alert.alert('Please select a size');
-        }
-      } else {
-        Alert.alert('Proceed to checkout');
-      }
+      Alert.alert('Proceed to checkout');
     }
   };
 
@@ -150,7 +152,7 @@ const StylishModal: React.FC<StylishModalProps> = ({
             label={buttonType === 'add_to_cart' ? 'Add To Cart' : 'Buy Now'}
             buttonStyle={`${
               buttonType === 'add_to_cart' ? 'bg-blue-400' : 'bg-green-400'
-            } bg-green-600 py-4 rounded-lg mt-7`}
+            }  py-4 rounded-lg mt-7`}
             buttonTextStyle="text-white font-bold"
           />
         </Pressable>
