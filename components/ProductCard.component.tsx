@@ -7,10 +7,10 @@ type ProductCardProps = {
   onProductPress: (product: Product) => void;
 };
 
-const ProductCard = ({product, onProductPress}: ProductCardProps) => {
+const ProductCard: React.FC<ProductCardProps> = ({product, onProductPress}) => {
   return (
     <TouchableOpacity
-      className="bg-white p-4 rounded-lg shadow-md mb-4 w-[48%] h-[250px] flex gap-1 "
+      className="bg-white p-4 rounded-lg shadow-sm mb-4 w-[48%] h-[250px] flex gap-1 "
       onPress={() => onProductPress(product)}>
       <Image
         source={{uri: product.mainImage}}

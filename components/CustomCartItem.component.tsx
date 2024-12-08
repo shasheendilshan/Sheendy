@@ -61,8 +61,8 @@ const CustomCartItem: React.FC<CartItemProps> = ({item}) => {
       </View>
       <TouchableOpacity
         onPress={() => handleRemoveItem(item.id)}
-        className="ml-4">
-        <Ionicons name="trash-bin" size={24} color="red" />
+        className="ml-4 ">
+        <Ionicons name="trash-bin" size={20} color="rgb(248 113 113)" />
       </TouchableOpacity>
     </View>
   );

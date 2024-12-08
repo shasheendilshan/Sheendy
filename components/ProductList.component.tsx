@@ -9,7 +9,7 @@ type ProductListProps = {
   products: Product[];
 };
 
-const ProductList = ({products}: ProductListProps) => {
+const ProductList:React.FC<ProductListProps> = ({products}) => {
   const navigation = useNavigation<DetailsScreenNavigationProp>();
 
   const handleProductPress = (product: Product) => {
@@ -17,7 +17,7 @@ const ProductList = ({products}: ProductListProps) => {
   };
 
   return (
-    <View className="flex-1 flex">
+    <View className="flex-1 flex bg-slate-100">
       <FlatList
         data={products}
         keyExtractor={item => item.id.toString()}

@@ -11,7 +11,7 @@ import NotificationsScreen from './screens/NotificationsScreen';
 import {RootStackParamList} from './types/Navigation.type';
 import {useSelector} from 'react-redux';
 import {RootState} from './Store/store';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, View} from 'react-native';
 
 const HomeTabs = createBottomTabNavigator({
   screens: {
@@ -19,7 +19,7 @@ const HomeTabs = createBottomTabNavigator({
       screen: HomeScreen,
       options: {
         headerShown: false,
-        tabBarIcon: ({size, focused, color}) => {
+        tabBarIcon: ({size, color}) => {
           return <Ionicons name="home" size={size} color={color} />;
         },
       },
@@ -51,7 +51,7 @@ const HomeTabs = createBottomTabNavigator({
       screen: NotificationsScreen,
       options: {
         headerShown: false,
-        tabBarIcon: ({size, focused, color}) => {
+        tabBarIcon: ({size, color}) => {
           return <Ionicons name="notifications" size={size} color={color} />;
         },
       },
@@ -70,17 +70,9 @@ const RootStack = createNativeStackNavigator<RootStackParamList>({
     },
     DetailsScreen: {
       screen: DetailsScreen,
-      options: ({navigation}) => ({
-        headerShown: true,
-        headerTitle: '',
-        headerLeft: () => (
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            className="bg-gray-200 p-2 rounded-full ml-2 ">
-            <Ionicons name="arrow-back" size={24} color="#333" />
-          </TouchableOpacity>
-        ),
-      }),
+      options: {
+        headerShown: false,
+      },
     },
   },
 });

@@ -1,31 +1,29 @@
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity, Platform, Text} from 'react-native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../Store/store';
-import {useNavigation} from '@react-navigation/native';
 
-const HomeScreenHeader: React.FC = () => {
+const DetailsScreenHeader:React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const itemCount = cartItems.length;
 
   const navigation = useNavigation<any>();
 
   return (
-    <View className="w-full h-[60px] bg-purple-500 flex-row items-center justify-between px-4">
-      <View className="flex-row items-center bg-white rounded-full px-4  w-[80%] h-[40px]">
-        <Ionicons name="search" size={20} color="#888" />
-        <TextInput
-          placeholder="Search..."
-          className="ml-2 flex-1 text-black"
-          style={{fontSize: 14}}
-        />
-      </View>
-
+    <View className="w-full h-[60px] bg-purple-500  flex-row items-center justify-between px-4 ">
       <TouchableOpacity
-        className="relative"
+        onPress={() => navigation.goBack()}
+        className={`bg-gray-100  flex  items-center justify-center rounded-full w-12 h-12`}>
+        <Ionicons name="arrow-back" size={24} color="#333" />
+      </TouchableOpacity>
+      <TouchableOpacity
+      className='relative'
         onPress={() => {
-          navigation.navigate('Cart');
+          navigation.navigate('HomeScreen', {
+            screen: 'Cart',
+          });
         }}>
         <Ionicons name="cart" size={30} color="#ffffff" />
         {itemCount > 0 && (
@@ -38,4 +36,4 @@ const HomeScreenHeader: React.FC = () => {
   );
 };
 
-export default HomeScreenHeader;
+export default DetailsScreenHeader;

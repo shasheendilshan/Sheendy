@@ -26,7 +26,7 @@ export default function CartScreen() {
 
   return (
     <SafeAreaView className="flex flex-1">
-      <View className="flex-1 w-full bg-gray-100 px-4">
+      <View className="flex-1 w-full bg-slate-100 px-4">
         {/* Cart Items */}
         {cartItems.length > 0 ? (
           <FlatList
@@ -43,27 +43,27 @@ export default function CartScreen() {
 
         {/* Cart Summary */}
         {cartItems.length > 0 && (
-          <View className="bg-white rounded-lg p-4 shadow-lg absolute bottom-0 left-0 right-0">
+          <View className="bg-white px-4 py-2 shadow-sm absolute bottom-0 left-0 right-0">
             {/* Total Amount */}
-            <View className="flex-row justify-between">
+            <View className="flex-row justify-between h-[20px]">
               <Text className="text-lg font-bold text-gray-800">Total:</Text>
               <Text className="text-lg font-bold text-green-600">
                 GBP {totalAmount.toFixed(2)}
               </Text>
             </View>
 
-            <View className="flex-row mt-4 gap-2">
+            <View className="flex-row mt-4 gap-2 h-[40px]">
               <CustomButton
                 onPress={handleClearCart}
                 label="Clear Cart"
-                buttonStyle="bg-red-500 py-3 flex-1"
+                buttonStyle="bg-red-400 flex-1"
                 buttonTextStyle="text-white font-bold"
               />
 
               <CustomButton
                 onPress={() => Alert.alert('Checkout', 'Proceed to checkout')}
                 label="Checkout"
-                buttonStyle="bg-green-500 py-3  flex-1"
+                buttonStyle="bg-green-400   flex-1"
                 buttonTextStyle="text-white font-bold"
               />
             </View>

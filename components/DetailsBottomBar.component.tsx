@@ -9,11 +9,11 @@ type DetailsPageBottomBarProps = {
   disabled?: boolean;
 };
 
-const DetailsPageBottomBar = ({
+const DetailsPageBottomBar: React.FC<DetailsPageBottomBarProps> = ({
   onAddToCart,
   onBuyNow,
   disabled = false,
-}: DetailsPageBottomBarProps) => {
+}) => {
   return (
     <View className="w-full bg-white border-t border-gray-300 p-4 gap-4 flex-row justify-between items-center">
       <CustomButton
